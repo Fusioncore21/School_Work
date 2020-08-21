@@ -73,7 +73,7 @@ def shopUI():
         for i in range(len(ComponentType)-1):
             print("\n"+ComponentType[i])
             for Name,Amount in zip(StockRefresh()[i].keys(),StockRefresh()[i].values()):
-                print(f"{Name}: {Amount} in storage.\n")
+                print(f"{Name}: {Amount} in storage.")
 
     def AdminPanel(): # Admin panel: Add stock, check recent orders and so on
         pass
