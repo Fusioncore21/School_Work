@@ -1,16 +1,17 @@
-from string import ascii_uppercase as upper
-upper = [a for a in upper]
+import string
 
-def Convert_Numb_To_Ref(Order_Number):
-    """Takes an Order_Number (int), and converts it into a unique Order_ID"""
-    Number = str((Order_Number%9999)+1) # Makes it so it never is bigger than 4 digits
-    Number = ("0"*(4-len(str(Number))))+Number # If number < 1000, adds on 0s to the beginning, so 1 -> 0001
-    try:
-        Letter = upper[Order_Number//9999] # Divides and floors
-    except IndexError:
+
+def number_to_reference(order_number):
+    """Take an order number and convert it into a unique order id."""
+    if order_number >= 26 * 26 * 10000:
         print("Number too large! Cannot generate Product_ID")
         return False
-    return f"#{Letter}{Number}"
-while True:
-    Product_UD = Convert_Numb_To_Ref(int(input("Number please: ")))
-    print(Product_UD)
+        # NB: You could also do the following instead:
+        # raise ValueError('Number too large! Cannot generate Product_ID')
+
+    high_part = order_number // 10000
+    low_part = order_number % 10000
+
+    letter1 = string.ascii_uppercase[high_part // 26]
+    letter2 = string.ascii_uppercase[high_part % 26]
+    return '#%s%s%04d' % (letter1, letter2, low_part)
