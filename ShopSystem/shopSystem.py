@@ -61,7 +61,7 @@ ItemLibrary = [{"p3-3410i":100,"p5-3420i":120,"p7-3430i":200}, # Processors
 ]
 
 def shopUI():
-    """Its the shop UI, duh."""
+    """Its the shop UI, duh. It ain't pretty, but it does the job!"""
     #Stock = StockRefresh()
     print("[COMPUTER SHOP]\nWelcome To My Computer Store! Please select one of the options below:\n1 - Buying a PC\n2 - Current Stock\n3 - Admin Console")
     def BuyPC(): # Buying PC
@@ -76,7 +76,20 @@ def shopUI():
                 print(f"{Name}: {Amount} in storage.")
 
     def AdminPanel(): # Admin panel: Add stock, check recent orders and so on
-        pass
+        if input("\nAccess Denied! Please Enter Password: ") == "ComputerMan69": 
+            def AddStock():
+                pass
+            def Recent_Orders():
+                pass
+            Internal_Switch = {1:AddStock,2:Recent_Orders}
+            print("Access Authorised! Current Admin Commands:\n1 - Add Stock\n2 - Recent Orders\n")
+            while True:
+                try:
+                    userSelection = int(input("Make your pick: "))
+                    Internal_Switch[userSelection]()
+                    break
+                except (KeyError,ValueError):
+                    print("That is not a category, pick again!\n")
 
     Switch_Case = {1:BuyPC,2:ShowStock,3:AdminPanel}
     while True:
