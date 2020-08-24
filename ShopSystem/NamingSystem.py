@@ -12,4 +12,4 @@ def number_to_reference(order_number):
     letter1 = string.ascii_uppercase[high_part // 26]
     letter2 = string.ascii_uppercase[high_part % 26]
     return '#%s%s%04d' % (letter1, letter2, low_part)
-print(number_to_reference(100000000))
+print(number_to_reference(1000000))
