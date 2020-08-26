@@ -14,12 +14,14 @@ def BuySystemV1(StockLibrary): # This doesn't really work yet but whatever
     """Standard buy screen. Requires a list of stock."""
     print("\nWelcome to the PC building screen!\nLets begin by selecting the component you'd like from the list below:")
     SelectedComponents = []
+
     for Type in range(6):
         print(f"COMPONENT: {ComponentType[Type]}")
         ItemKeys = ItemLibrary[Type].keys()
         StockKeys = StockLibrary[Type].keys()
         Numb_Items = 1
         Available_Items = []
+
         for ItemKey,StockKey in zip(ItemKeys,StockKeys):
             Availability = "" 
             if not StockLibrary[Type][StockKey]:
@@ -29,6 +31,7 @@ def BuySystemV1(StockLibrary): # This doesn't really work yet but whatever
                 Available_Items.append(ItemLibrary[Type][ItemKey])
             print(f"{Numb_Items}: {ItemKey} -> ${ItemLibrary[Type][ItemKey]} {Availability}")
             Numb_Items += 1
+
         while True:
             try:
                 ItemSelection = int(input("\nPlease make your selection.\nINPUT: "))
@@ -40,6 +43,7 @@ def BuySystemV1(StockLibrary): # This doesn't really work yet but whatever
             except (ValueError,IndexError):
                 print("[ERROR] That is not a selection!")
     print(SelectedComponents)
+
     # Final Pricing and stuff
     print("Total Cost:\n[COMPONENT]{}[COST]".format("-"*11))
     finalcost = 0
@@ -49,12 +53,14 @@ def BuySystemV1(StockLibrary): # This doesn't really work yet but whatever
         finalcost+=cost
     finalcost *= 1.2 # VAT
     visual_Cost = finalcost
+
     if finalcost.is_integer():
         visual_Cost = str(int(visual_Cost))
         visual_Cost+=".00"
     else:
         visual_Cost = str(visual_Cost)
         visual_Cost+="0"
+        
     print(" "*8,f"GRAND TOTAL:  ${visual_Cost} (with 20% VAT)")
     
     return finalcost,SelectedComponents
