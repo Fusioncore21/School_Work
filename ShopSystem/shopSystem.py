@@ -81,7 +81,7 @@ def shopUI():
                 pass
             def Recent_Orders():
                 with open("Orders.csv",newline="") as file:
-                    Orders = csv.reader(file)
+                    Orders = list(csv.reader(file))
                     print(Orders)
 
             Internal_Switch = {1:AddStock,2:Recent_Orders}
