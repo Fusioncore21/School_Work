@@ -79,9 +79,9 @@ def shopUI():
         if input("\nAccess Denied! Please Enter Password: ") == "ComputerMan69": 
             def AddStock():
                 pass
-            def Recent_Orders():
+            def Recent_Orders(): # Lists orders from the past day
                 with open("Orders.csv",newline="") as file:
-                    Orders = list(csv.reader(file))
+                    Orders = list(csv.DictReader(file))
                     print(Orders)
 
             Internal_Switch = {1:AddStock,2:Recent_Orders}
