@@ -1,7 +1,8 @@
 # File name: shopSystem.py
 # Aim: Create a basic computer shop system that estimates the cost of items and does some other cool stuff, I guess.
 import csv
-import time
+from datetime import datetime as dt
+
 from BuySys import BuySystemV1
 
 def StockRefresh():
@@ -78,11 +79,17 @@ def shopUI():
     def AdminPanel(): # Admin panel: Add stock, check recent orders and so on
         if input("\nAccess Denied! Please Enter Password: ") == "ComputerMan69": 
             def AddStock():
-                pass
+                print("Add stock code here")
             def Recent_Orders(): # Lists orders from the past day
                 with open("Orders.csv",newline="") as file:
                     Orders = list(csv.DictReader(file))
-                    print(Orders)
+                    file.close
+                    
+                for Order in Orders:
+                    print("In for loop")
+                    Timestamp = dt.fromtimestamp(float(Order["Timestamp"]))
+                    if Timestamp.strftime("%d")==dt.now().strftime("%d"):
+                        print(Order)
 
             Internal_Switch = {1:AddStock,2:Recent_Orders}
             print("Access Authorised! Current Admin Commands:\n1 - Add Stock\n2 - Recent Orders\n")
