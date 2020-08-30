@@ -1,3 +1,5 @@
 Name,Components,Order_ID,Cost,Timestamp
-A customer,Stuff,#AA0001,492.29,1598485697.925629
-Customer A,Their Order,#AA0002,319.13,1598746236.341708
+User 1,"['p3-3410i', '16 GB', '1 TB', '19 Inch', 'Mini Tower', '2 Ports']",#AA0001,408.0,1598754749.601278
+User 2,"['p3-3410i', '16 GB', '1 TB', '19 Inch', 'Mini Tower', '2 Ports']",#AA0002,408.0,1598754785.523333
+User 3,"['p3-3410i', '32 GB', '2 TB', '23 Inch', 'Mini Tower', '2 Ports']",#AA0003,624.0,1598754822.223716
+User 4,"['p3-3410i', '16 GB', '2 TB', '23 Inch', 'Mini Tower', '4 Ports']",#AA0004,546.0,1598754845.475206
