@@ -4,6 +4,7 @@ import csv
 from datetime import datetime as dt
 
 from BuySys import BuySystemV1
+from NamingSystem import number_to_reference as ref
 
 def StockRefresh():
     """Refreshes the stock levels of all items available. No arguments."""
@@ -68,7 +69,23 @@ def shopUI():
     def BuyPC(): # Buying PC
         final_cost,User_Components = BuySystemV1(StockRefresh())
         StockUpdate(User_Components)
-        
+        Name = input("\nGreat! You've built your PC!\nAll we need now is your name: ")
+        PrintTime = dt.now().strftime("%d %B, %Y at %X %p")
+        Timestamp = dt.timestamp(dt.now())
+        print(f"Here is your recipt for you and the owner:\nName: {Name}\nDate and Time: {PrintTime}\nComponents Ordered:")
+        for comp in User_Components:
+            print(comp)
+        print(f"\nFinal Cost: ${final_cost}0")
+        with open("Orders.csv",newline='') as file:
+            Order_ID = ref(len(list(csv.DictReader(file)))+1)
+            print(f"Order Reference: {Order_ID}")
+        file.close
+        with open("Orders.csv","a+",newline="") as file:
+            Writer = csv.writer(file)
+            Writer.writerow([Name,User_Components,Order_ID,final_cost,Timestamp])
+        file.close
+        print("\nThank you for shopping at my computer store! I hope you come again!\n")
+
     def ShowStock():# Show current stock
         ComponentType = ["Processor","RAM Size","Storage","Screen Size","Case Size","USB Ports"]
         for i in range(len(ComponentType)-1):
@@ -86,10 +103,10 @@ def shopUI():
                     file.close
 
                 for Order in Orders:
-                    print("In for loop")
                     Timestamp = dt.fromtimestamp(float(Order["Timestamp"]))
                     if Timestamp.strftime("%d")==dt.now().strftime("%d"):
-                        print(Order)
+                        print("Customer ({}) on {}\nOrdered Components: {}\nOrder ID: {}\nCost: ${}0".format(Order["Name"],Timestamp.strftime("%d %B, %Y at %X %p"),Order["Components"],Order["Order_ID"],Order["Cost"]))
+                        input()
 
             Internal_Switch = {1:AddStock,2:Recent_Orders}
             print("Access Authorised! Current Admin Commands:\n1 - Add Stock\n2 - Recent Orders\n")
@@ -107,7 +124,7 @@ def shopUI():
             userSelection = int(input("Make your pick: "))
             Switch_Case[int(userSelection)]()
             break
-        except (KeyError,ValueError):
-            print("That is not a category, pick again!\n")
+        except IndentationError:
+            print("no")
 while True:
     shopUI()
