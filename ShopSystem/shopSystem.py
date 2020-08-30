@@ -67,7 +67,7 @@ def shopUI():
     print("[COMPUTER SHOP]\nWelcome To My Computer Store! Please select one of the options below:\n1 - Buying a PC\n2 - Current Stock\n3 - Admin Console")
     def BuyPC(): # Buying PC
         final_cost,User_Components = BuySystemV1(StockRefresh())
-        print(final_cost,User_Components)
+        StockUpdate(User_Components)
         
     def ShowStock():# Show current stock
         ComponentType = ["Processor","RAM Size","Storage","Screen Size","Case Size","USB Ports"]
@@ -84,7 +84,7 @@ def shopUI():
                 with open("Orders.csv",newline="") as file:
                     Orders = list(csv.DictReader(file))
                     file.close
-                    
+
                 for Order in Orders:
                     print("In for loop")
                     Timestamp = dt.fromtimestamp(float(Order["Timestamp"]))
