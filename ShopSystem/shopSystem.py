@@ -124,7 +124,7 @@ def shopUI():
             userSelection = int(input("Make your pick: "))
             Switch_Case[int(userSelection)]()
             break
-        except:
+        except (KeyError,ValueError):
             print("That is not a category, pick again!\n")
 while True:
     shopUI()
