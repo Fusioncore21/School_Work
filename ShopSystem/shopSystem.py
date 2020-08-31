@@ -124,7 +124,7 @@ def shopUI():
             userSelection = int(input("Make your pick: "))
             Switch_Case[int(userSelection)]()
             break
-        except IndentationError:
-            print("no")
+        except:
+            print("That is not a category, pick again!\n")
 while True:
     shopUI()
