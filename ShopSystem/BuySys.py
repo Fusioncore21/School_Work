@@ -15,13 +15,14 @@ def BuySystemV1(StockLibrary): # This doesn't really work yet but whatever
     print("\nWelcome to the PC building screen!\nLets begin by selecting the component you'd like from the list below:")
     SelectedComponents = []
 
-    for Type in range(6):
+    for Type in range(6): # There are 6 component types
         print(f"COMPONENT: {ComponentType[Type]}")
         ItemKeys = ItemLibrary[Type].keys()
         StockKeys = StockLibrary[Type].keys()
         Numb_Items = 1
         Available_Items = []
 
+        # If there item in question is out of stock, it appends [NOT IN STOCK] onto it.
         for ItemKey,StockKey in zip(ItemKeys,StockKeys):
             Availability = "" 
             if not StockLibrary[Type][StockKey]:

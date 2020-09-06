@@ -2,7 +2,7 @@ import string
 
 def number_to_reference(order_number):
     """Take an order number and convert it into a unique order id."""
-    if order_number >= 26 * 26 * 10000:
+    if order_number >= 26 * 26 * 10000: # There are 26 letters in the alpabet. I use 2 sets of letters, alongside a 4 digit number to make the ID.
         print("Number too large! Cannot generate Product_ID.")
         return False
         # NB: You could also do the following instead:

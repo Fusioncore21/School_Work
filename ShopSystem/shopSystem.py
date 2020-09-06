@@ -67,11 +67,14 @@ def shopUI():
     #Stock = StockRefresh()
     print("[COMPUTER SHOP]\nWelcome To My Computer Store! Please select one of the options below:\n1 - Buying a PC\n2 - Current Stock\n3 - Admin Console")
     def BuyPC(): # Buying PC
+        # Setting up the variables
         final_cost,User_Components = BuySystemV1(StockRefresh())
         StockUpdate(User_Components)
         Name = input("\nGreat! You've built your PC!\nAll we need now is your name: ")
-        PrintTime = dt.now().strftime("%d %B, %Y at %X %p")
+        PrintTime = dt.now().strftime("%d %B, %Y at %X %p") # Formats the current date with formatting strings.
         Timestamp = dt.timestamp(dt.now())
+
+        # This sludge of print statement simply prints out the recipt. I don't want to talk about it ok
         print(f"Here is your recipt for you and the owner:\nName: {Name}\nDate and Time: {PrintTime}\nComponents Ordered:")
         for comp in User_Components:
             print(comp)
@@ -108,6 +111,7 @@ def shopUI():
                         print("Customer ({}) on {}\nOrdered Components: {}\nOrder ID: {}\nCost: ${}0".format(Order["Name"],Timestamp.strftime("%d %B, %Y at %X %p"),Order["Components"],Order["Order_ID"],Order["Cost"]))
                         input()
 
+            # Like the main switch, this just makes sure the user can't fool the program when selecting a category.
             Internal_Switch = {1:AddStock,2:Recent_Orders}
             print("Access Authorised! Current Admin Commands:\n1 - Add Stock\n2 - Recent Orders\n")
             while True:
