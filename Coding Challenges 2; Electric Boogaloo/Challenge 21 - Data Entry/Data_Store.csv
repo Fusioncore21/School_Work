@@ -1,0 +1,6 @@
+ID,Name,Proficiency,Payed Membership?,Time
+1,Sam1,Noob,true,2
+2,Sam2,Beginner,false,12
+3,Sam3,Intermediate,true,29
+4,Sam4,Pro,true,40
+5,Sam5,Master,false,100
