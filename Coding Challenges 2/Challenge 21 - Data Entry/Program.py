@@ -25,5 +25,4 @@ class Users:
 
 for User in CurrentUsers:
     User = Users(User[0],User[1],User[2],User[3],User[4])
-
 print(CurrentUsers)
