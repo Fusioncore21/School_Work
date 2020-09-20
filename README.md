@@ -10,6 +10,8 @@ Overview: This project's aim is to create a simple shop system, where a user can
 
 1. Create a working shop system from a table of prices of computer components. Display them in a selectable fashion. When the components have been selected, assign a timestamp and order ID to a file for future reference.
 2. Create an Admin board, protected by a simple password. This admin board is able to change the stock value of each component, as well as check on the day's orders.
-
+---
+## Project 2: Coding Challenges 21-40
+These are challenges created by OCR to well, challenge your coding skills, as well as give you ideas on creating unique solutions. Each folder has their own markdown file for you to read.
 
 Thanks for reading!
