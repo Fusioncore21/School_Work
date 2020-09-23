@@ -1,28 +1,29 @@
 # Get Module(s)
 import csv
-
-with open("Data_Store.csv","r") as Data: # Getting Stored Data
-    Data = list(csv.reader(Data))
+Data = list(csv.reader(open("Data_Store.csv","r"))) # Get Stored Data
 
 CurrentUsers = list()
 for Position in range(1,len(Data)):
     CurrentUser = []
     for Header,Value in enumerate(Data[Position]):
-        print(f"{Data[0][Header]}: {Value}")
+        #print(f"{Data[0][Header]}: {Value}")
         CurrentUser.append(Value)
-    print("\n")
+    #print("\n")
     CurrentUsers.append(CurrentUser)
 
-class Users:
-    def __init__(self,ID,Name,Proficiency,PMember,Time):
-        self.ID = ID
-        self.Name = Name
-        self.Proficiency = Proficiency
-        self.PMember = PMember
-        self.Time = Time
-    def Print_Info(self):
-        print(f"User ID: {self.ID}\nName: {self.Name}\nProficency level: {self.Proficiency}\nPayed Membership:{self.PMember}/nTime at club:{self.Time}")
+def Get_Input(Query,Range):
+    """Gets a user input, regardless of how fucking stupid they are\nQuery - The question\nRange - How far would you like the range of values to be?"""
+    while True:
+        try:
+            Attempted_Input = int(input(Query))
+            if Attempted_Input in range(1,Range+1):
+                return Attempted_Input
+            else:
+                raise ValueError
+        except ValueError:
+            print("That is not an option!")
 
-for User in CurrentUsers:
-    User = Users(User[0],User[1],User[2],User[3],User[4])
-print(CurrentUsers)
+def GUI():
+    print("Welcome to the Rock Climbing Club! How many I help you today?\n1 - Enter Club\n2 - Join Club\n3 - Admin")
+    Get_Input("What is your choice?: ",3)
+GUI()
