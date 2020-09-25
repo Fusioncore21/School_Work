@@ -1,5 +1,7 @@
 # Get Module(s)
 import csv
+from time import sleep
+import Custom_Tools as CT # Custom module that I made to store frequently used functions
 Data = list(csv.reader(open("Data_Store.csv","r"))) # Get Stored Data
 
 CurrentUsers = list()
@@ -10,20 +12,27 @@ for Position in range(1,len(Data)):
         CurrentUser.append(Value)
     #print("\n")
     CurrentUsers.append(CurrentUser)
-
-def Get_Input(Query,Range):
-    """Gets a user input, regardless of how fucking stupid they are\nQuery - The question\nRange - How far would you like the range of values to be?"""
-    while True:
-        try:
-            Attempted_Input = int(input(Query))
-            if Attempted_Input in range(1,Range+1):
-                return Attempted_Input
-            else:
-                raise ValueError
-        except ValueError:
-            print("That is not an option!")
-
-def GUI():
+print(CurrentUsers)
+def UI():
     print("Welcome to the Rock Climbing Club! How many I help you today?\n1 - Enter Club\n2 - Join Club\n3 - Admin")
-    Get_Input("What is your choice?: ",3)
-GUI()
+    def enter_club():
+        name = input("What is your username?").lower()
+        for n in range(1,len(Data)):
+            if name in Data[n]:
+                print(f"Welcome to the club {name.cap}!")
+
+    def join_club():
+        print("I see you would like to join us!\nPlease fill out these questions:")
+        Name = input("What is your name?: ")
+        Prof = input("How would you rate your proficiency?: ")
+        Time = input("How long have you been rock climbing for? (Hours): ")
+        csv.writer(open("Data_Store.csv","a+",newline='')).writerow([len(CurrentUsers)+1,Name,Prof,False,Time])
+        print("Adding to database...")
+        sleep(1)
+        print("\nThank you for filling out our form! You need to pay your membership first, which will be asked for when you enter the club! Thank you for joining!")
+    def admin_control():
+        print("Admin control")
+    Switch = {1:enter_club,2:join_club,3:admin_control}
+    Switch[CT.Get_Int_Input("What is your choice?: ",3)]()
+    
+UI()
