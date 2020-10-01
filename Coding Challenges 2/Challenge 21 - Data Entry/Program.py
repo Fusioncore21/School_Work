@@ -13,14 +13,20 @@ for Position in range(1,len(Data)):
     #print("\n")
     CurrentUsers.append(CurrentUser)
 print(CurrentUsers)
+
 def UI():
     print("Welcome to the Rock Climbing Club! How many I help you today?\n1 - Enter Club\n2 - Join Club\n3 - Admin")
     def enter_club():
-        name = input("What is your username?").lower()
+        name = input("What is your username?: ")
         for n in range(1,len(Data)):
             if name in Data[n]:
-                print(f"Welcome to the club {name.cap}!")
-
+                print(f"Welcome to the club, {name.capitalize()}!")
+                break
+            else:
+                print("Sorry, you're not on our list!\n")
+                sleep(2)
+                UI()
+        print("I am now here")
     def join_club():
         print("I see you would like to join us!\nPlease fill out these questions:")
         Name = input("What is your name?: ")
@@ -33,6 +39,5 @@ def UI():
     def admin_control():
         print("Admin control")
     Switch = {1:enter_club,2:join_club,3:admin_control}
-    Switch[CT.Get_Int_Input("What is your choice?: ",3)]()
-    
+    Switch[CT.Get_Int_Inputv2("What is your choice?: ",3)]()
 UI()
