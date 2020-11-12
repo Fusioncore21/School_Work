@@ -2,8 +2,8 @@ import Custom_Tools
 import string
 CHANGELOG = """
 Morse Code Translation Program
-[VERSION] 0.1
-[LAST UPDATE] 11/11/2020
+[VERSION] 1.0
+[LAST UPDATE] 12/11/2020
 """
 # * Defining the morse code translator
 MC_Translator = {
@@ -57,11 +57,15 @@ def UI():
                 UI()
 
         Translated_Morse = ""
+        word2 = ""
         for word in to_Parse.split(sep="|"):
-            for key in MC_Translator.keys():
-                if key in word:
-                    temp = word.replace(key,MC_Translator[key])
-            Translated_Morse+=temp
+            for letter in word.split(sep=" "):
+                for key in MC_Translator.keys():
+                    if key == letter:
+                        letter = letter.replace(key,MC_Translator[key])
+                word2 += letter
+            Translated_Morse+=(word2+" ")
+            word2 = ""
         return Translated_Morse.title() # Makes it have a uppercase first letter
 
     def String_To_Morse(): # Now to go backwards. WEEEEEE
@@ -80,7 +84,7 @@ def UI():
                         word = word.replace(item[1],item[0]+" ")
                 except TypeError:
                     continue
-                print(word)
+                
             Translated_String+=(word+"|")
 
         return Translated_String
